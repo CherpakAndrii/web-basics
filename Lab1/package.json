@@ -1,0 +1,17 @@
+﻿{
+  "name": "lab-1",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon",
+    "lint": "eslint **/*.js",
+    "format": "npx prettier --write ."
+  },
+  "dependencies": {
+    "prettier": "^3.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CherpakAndrii/web-basics.git"
+  },
+  "author": "Andrii Cherpak"
+}
