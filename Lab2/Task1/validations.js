@@ -72,11 +72,15 @@ function _validateAddress(address)// refine needed format
 }
 
 function PrintData(data){
-	let dataOutput = "<h1>Введені дані:</h1>" +
+	const classname = "data-out-container";
+	if (document.body.getElementsByClassName(classname).length > 2){
+		document.body.getElementsByClassName(classname)[0].remove();
+	}
+	let dataOutput = "<div class="+classname+"><h1>Введені дані:</h1>" +
 		"<p><b>ПІБ:</b> " + data.fullname.value + "</p>" +
 		"<p><b>ID-карта:</b> " + data.IdCard.value + "</p>" +
 		"<p><b>Факультет:</b> " + data.faculty.value + "</p>" +
 		"<p><b>Дата народження:</b> " + data.birthdate.value + "</p>" +
-		"<p><b>Адреса:</b> " + data.address.value + "</p>";
+		"<p><b>Адреса:</b> " + data.address.value + "</p></div>";
 	document.body.innerHTML += dataOutput;
 }
