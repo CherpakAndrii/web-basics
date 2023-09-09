@@ -7,4 +7,5 @@
 /httpRequests/
 /dataSources/
 /dataSources.local.xml
-/.idea/
+/.idea
+/*/node_modules/
