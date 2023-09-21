@@ -1,8 +1,19 @@
+:root {
+  --inp-bg-color: white;
+  --incorrect-inp-bg-color: yellow;
+  --submit-button-color: lightgreen;
+  --act-submit-button-color: green;
+}
+
 html {
   height: 100%;
   width: 100%;
   padding: 0;
   margin: 0;
+}
+
+input {
+  background: var(--inp-bg-color);
 }
 
 body {
@@ -35,7 +46,7 @@ body {
 }
 
 #submit-button {
-  background: lightgreen;
+  background: var(--submit-button-color);
   color: white;
   border-radius: 1em;
   border-style: none;
@@ -52,5 +63,5 @@ body {
 
 #submit-button:hover,
 #submit-button:focus {
-background-color: green;
+background-color: var(--act-submit-button-color);
 }

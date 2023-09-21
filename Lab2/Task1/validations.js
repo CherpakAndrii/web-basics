@@ -1,10 +1,14 @@
-﻿function ValidateFormData(data)
+﻿const rootStyles = getComputedStyle(document.querySelector(':root'));
+let inp_bg_color = rootStyles.getPropertyValue('--inp-bg-color');
+let incorrect_inp_bg_color = rootStyles.getPropertyValue('--incorrect-inp-bg-color');
+
+function ValidateFormData(data)
 {
-	if (_validateName(data.fullname.value) &&
-		_validateIdCard(data.IdCard.value) &&
-		_validateFaculty(data.faculty.value) &&
-		_validateBirthDate(data.birthdate.value) &&
-		_validateAddress(data.address.value))
+	if (_validateName(data.fullname) &&
+		_validateIdCard(data.IdCard) &&
+		_validateFaculty(data.faculty) &&
+		_validateBirthDate(data.birthdate) &&
+		_validateAddress(data.address))
 	{
 		PrintData(data);
 		return true;
@@ -15,11 +19,13 @@
 
 function _validateName(fullname)
 {
-	if (fullname != null && (/^[A-ZА-ЯІҐЄЇ][a-zа-яіґєї]+ [A-ZА-ЯІҐЄЇ]\.[A-ZА-ЯІҐЄЇ]\.$/.test(fullname)))
+	if (fullname.value != null && (/^[A-ZА-ЯІҐЄЇ][a-zа-яіґєї]+ [A-ZА-ЯІҐЄЇ]\.[A-ZА-ЯІҐЄЇ]\.$/.test(fullname.value)))
 	{
+		fullname.style.background = inp_bg_color;
 		return true;
 	}
-	
+
+	fullname.style.background = incorrect_inp_bg_color;
 	alert("Некоректний формат імені!")
 	return false;
 }
@@ -27,46 +33,54 @@ function _validateName(fullname)
 function _validateIdCard(IdCard)// refine needed format
 {
 	return true;
-	if (IdCard != null && (/^w+[-_.]*w+@w+-?w+.[a-z]{2,4}$/.test(IdCard)))
+	if (IdCard.value != null && (/^\d{9}$/.test(IdCard.value)))
 	{
+		IdCard.style.background = inp_bg_color;
 		return true;
 	}
 
+	IdCard.style.background = incorrect_inp_bg_color;
 	alert("Некоректний формат номеру ID-карти!")
 	return false;
 }
 
 function _validateFaculty(faculty)
 {
-	if (faculty != null && (/^[A-ZА-ЯІҐЄЇ]{3,5}$/.test(faculty)))
+	if (faculty.value != null && (/^[A-ZА-ЯІҐЄЇ]{3,5}$/.test(faculty.value)))
 	{
+		faculty.style.background = inp_bg_color;
 		return true;
 	}
-	
+
+	faculty.style.background = incorrect_inp_bg_color;
 	alert("Некоректний формат назви факультету!")
 	return false;
 }
 
 function _validateBirthDate(birthdate)
 {
-	if (birthdate != null &&
+	if (birthdate.value != null &&
 		// самі значення перевіряти на коректність не варто (як от місяць > 0 та < 13), форма не пропустить сміття
-		Date.parse(birthdate) < Date.now())
+		Date.parse(birthdate.value) < Date.now())
 	{
+		birthdate.style.background = inp_bg_color;
 		return true;
 	}
 	
+	birthdate.style.background = incorrect_inp_bg_color;
 	alert("Некоректний формат дати народження!")
 	return false;
 }
 
 function _validateAddress(address)// refine needed format
 {
-	if (address != null && (/^м. [А-ЯІҐЄЇ-]+$/.test(address)))
+	if (address.value != null && (/^м. [А-ЯІҐЄЇ-]+$/.test(address.value)))
 	{
+		address.style.background = inp_bg_color;
 		return true;
 	}
-	
+
+	address.style.background = incorrect_inp_bg_color;
 	alert("Некоректний формат адреси!")
 	return false;
 }
