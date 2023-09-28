@@ -30,7 +30,7 @@ function _validateName(fullname)
 	return false;
 }
 
-function _validateIdCard(IdCard)// refine needed format
+function _validateIdCard(IdCard)
 {
 	return true;
 	if (IdCard.value != null && (/^\d{9}$/.test(IdCard.value)))
@@ -72,9 +72,9 @@ function _validateBirthDate(birthdate)
 	return false;
 }
 
-function _validateAddress(address)// refine needed format
+function _validateAddress(address)
 {
-	if (address.value != null && (/^м. [А-ЯІҐЄЇ-]+$/.test(address.value)))
+	if (address.value != null && (/^м. [А-ЯІҐЄЇ][а-яіґєї]+(-[А-ЯІҐЄЇ][а-яіґєї]+)?$/.test(address.value)))
 	{
 		address.style.background = inp_bg_color;
 		return true;
