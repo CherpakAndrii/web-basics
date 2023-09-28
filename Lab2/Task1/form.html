@@ -1,0 +1,25 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <title>Input Form Validation</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div id="form-container">
+      <form>
+        <label for="fullname">Ім'я:</label><br>
+        <input type="text" id="fullname" name="fullname" placeholder="Черпак А.В."><br><br>
+        <label for="IdCard">Номер ID-картки:</label><br>
+        <input type="text" id="IdCard" name="IdCard" placeholder="987654321"><br><br>
+        <label for="faculty">Факультет:</label><br>
+        <input type="text" id="faculty" name="faculty" placeholder="ФІОТ"><br><br>
+        <label for="birthdate">Дата народження:</label><br>
+        <input type="date" id="birthdate" name="birthdate" placeholder="01.01.1970"><br><br>
+        <label for=address>Адреса:</label><br>
+        <input type="text" id=address name=address placeholder="м. ЖИТОМИР"><br><br>
+        <input type="submit" id="submit-button" value="Validate" name="Submit" onClick="return ValidateFormData(this.form)">
+      </form>
+    </div>
+  </body>
+  <script src="./validations.js"></script>
+</html>

@@ -1,0 +1,67 @@
+:root {
+  --inp-bg-color: white;
+  --incorrect-inp-bg-color: yellow;
+  --submit-button-color: lightgreen;
+  --act-submit-button-color: green;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+input {
+  background: var(--inp-bg-color);
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  font: 1.5rem "Fira Sans", serif;
+  box-sizing: border-box;
+}
+
+#form-container {
+  text-align: justify;
+  flex-shrink: revert;
+  margin: auto auto auto 1em;
+}
+
+.data-out-container {
+  text-align: justify;
+  flex-shrink: revert;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1em;
+  background: lightblue;
+  padding: 0 1em;
+}
+
+#submit-button {
+  background: var(--submit-button-color);
+  color: white;
+  border-radius: 1em;
+  border-style: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-align: center;
+  height: 2em;
+  width: 5em;
+}
+
+#submit-button:hover,
+#submit-button:focus {
+background-color: var(--act-submit-button-color);
+}
