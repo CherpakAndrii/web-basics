@@ -1,0 +1,89 @@
+﻿html {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: #dae0ff;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vh;
+  height: 100vh;
+  margin: auto;
+}
+
+#join-form {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#username {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #dfe4ff;
+  border: 1px solid #a9b8fe;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px #002aff;
+  width: 200px;
+  margin-right: 10px;
+}
+
+#join {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #3c5cff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Стилі для чату */
+#chat {
+  display: none;
+  text-align: left;
+  margin-top: 20px 100px;
+}
+
+#messages {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+#messages li {
+  margin-bottom: 10px;
+}
+
+#message-form {
+  display: flex;
+  align-items: center;
+}
+
+#message {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #dfe4ff;
+  border: 1px solid #a9b8fe;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px #002aff;
+  width: 80%;
+}
+
+#send {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #3c5cff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-top: 0px;
+  padding-top: 20px;
+}

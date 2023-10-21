@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Text Chat</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+
+<h1>Простий текстовий чат</h1>
+<div id="join-form">
+  <input id="username" type="text" placeholder="Введіть ваше ім'я">
+  <button id="join">Приєднатись</button>
+</div>
+<div id="chat" style="display: none;">
+  <ul id="messages"></ul>
+  <div id="message-form">
+    <input id="message" type="text" placeholder="Введіть ваше повідомлення">
+    <button id="send">Надіслати</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.min.js"></script>
+<script src="/static/script.js"></script>
+</body>
+
+</html>
