@@ -13,25 +13,62 @@ app.get('/', (req, res) => {
 });
 
 const users = {};
+const chats = {};
 
 io.on('connection', (socket) => {
 	socket.on('new user', (username) => {
 		if (username in users) {
-			socket.emit('username taken');
+			socket.emit('username taken', username);
 		} else {
+			socket.emit('username available', chats);
 			socket.username = username;
 			users[username] = socket.id;
-			io.emit('user connected', username);
 		}
 	});
 
+	socket.on('create chat', (chatname) => {
+		if (chatname in chats) {
+			socket.emit('chatname taken', chatname);
+		} else {
+			socket.emit('chatname available', chatname);
+			chats[chatname] = {messages: [], users: []};
+			io.emit('new chat', chatname);
+		}
+	});
+
+	socket.on('join chat', (chatname) => {
+		if (socket.currentChat !== undefined){
+			chats[socket.currentChat].messages.push({type: "disconn", user: socket.username});
+			let index = chats[socket.currentChat].users.indexOf(socket.username);
+			if (index > -1){
+				chats[socket.currentChat].users.splice(index, 1);
+			}
+			io.emit('user leaved', {username: socket.username, chat: socket.currentChat});
+		}
+		socket.currentChat = chatname;
+		chats[socket.currentChat].users.push(socket.username);
+		chats[socket.currentChat].messages.push({type: "conn", user: socket.username});
+		io.emit('user joined', {username: socket.username, chat: socket.currentChat});
+		socket.emit('history', chats[socket.currentChat].messages);
+		socket.emit('users', chats[socket.currentChat].users);
+	});
+
 	socket.on('chat message', (message) => {
-		io.emit('chat message', { username: socket.username, message });
+		io.emit('chat message', { username: socket.username, chat: socket.currentChat, message: message });
+		chats[socket.currentChat].messages.push({type: "mess", user: socket.username, message: message});
 	});
 
 	socket.on('disconnect', () => {
 		delete users[socket.username];
-		io.emit('user disconnected', socket.username);
+		
+		if (socket.currentChat !== undefined){
+			io.emit('user leaved', {username: socket.username, chat: socket.currentChat})
+			chats[socket.currentChat].messages.push({type: "disconn", user: socket.username});
+			let index = chats[socket.currentChat].users.indexOf(socket.username);
+			if (index > -1){
+				chats[socket.currentChat].users.splice(index, 1);
+			}
+		}
 	});
 });
 

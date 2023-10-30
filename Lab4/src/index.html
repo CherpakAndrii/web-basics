@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="ua">
 
 <head>
   <title>Text Chat</title>
@@ -8,17 +8,49 @@
 </head>
 
 <body>
-
-<h1>Простий текстовий чат</h1>
 <div id="join-form">
+  <h3>Оберіть ім'я, щоб приєднатися!</h3>
   <input id="username" type="text" placeholder="Введіть ваше ім'я">
-  <button id="join">Приєднатись</button>
+  <button id="log-in">Приєднатись</button>
 </div>
-<div id="chat" style="display: none;">
-  <ul id="messages"></ul>
-  <div id="message-form">
-    <input id="message" type="text" placeholder="Введіть ваше повідомлення">
-    <button id="send">Надіслати</button>
+<div id="main-area">
+  <div id="chatlist-area">
+    <div id="chat-list-container">
+      <h3>Доступні чати:</h3>
+      <ul id="chat-list"></ul>
+    </div>
+    <div id="create-chat">
+      <h3>Створити новий чат:</h3>
+      <input id="chatname-inp" type="text" placeholder="Введіть назву чату">
+      <button id="create">Створити</button>
+    </div>
+  </div>
+  <div id="messages-area">
+    <div id="chat-title">
+      <h3 id="title">
+        Оберіть чат, будь ласка
+      </h3>
+    </div>
+    <div id="messages-wrapper">
+      <ul id="messages"></ul>
+    </div>
+    <div id="message-form">
+      <input id="message" type="text" placeholder="Введіть Ваше повідомлення">
+      <button id="send">Надіслати</button>
+    </div>
+  </div>
+  <div id="participants-area">
+    <h3>Учасники чату:</h3>
+    <ul id="participants-list"></ul>
+  </div>
+</div>
+
+<div id="popup" class="popup-hidden">
+  <p id="popup-text"></p>
+  <div id="popup-timer">
+    <div id="timer-bar" class="timer-full">
+
+    </div>
   </div>
 </div>
 
