@@ -16,6 +16,8 @@ const users = {};
 const chats = {};
 
 io.on('connection', (socket) => {
+	socket.emit('reload');
+	
 	socket.on('new user', (username) => {
 		if (username in users) {
 			socket.emit('username taken', username);
@@ -73,5 +75,5 @@ io.on('connection', (socket) => {
 });
 
 server.listen(3000, () => {
-	console.log('Сервер запущено на порту 3000');
+	console.log('Running on http://localhost:3000/');
 });

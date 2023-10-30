@@ -107,8 +107,21 @@ socket.on('username taken', (username) => {
 socket.on('username available', (chatsList) => {
 	joinForm.style.display = 'none';
 	chatArea.style.display = 'flex';
+	chatList.innerHTML = '';
 	for (let ch in chatsList){
 		addChatToList(ch);
+	}
+});
+
+socket.on('reload', () => {
+	chatList.innerHTML = '';
+	participants.innerHTML = '';
+	chatMessages.innerHTML = '';
+	currentChatParticipants = [];
+	document.getElementById('message-form').style.visibility = 'hidden';
+	currentChatTitle.innerText = "Оберіть чат, будь ласка";
+	if (socket.username){
+		socket.emit('new user', socket.username);
 	}
 });
 

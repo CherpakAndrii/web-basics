@@ -6,6 +6,15 @@
   --li-color: #a8b7bd;
   --buttons-bg: #30434a;
   --buttons-fg: #fff;
+  --scrollbar-track-color: #555;
+  --scrollbar-thumb-color: #888;
+  --scrollbar-thumb-hover-color: #f1f1f1;
+  --popup-timerbar-color: #4e6eff;
+  --active-chatlink-color: #4e6eff;
+  --inputs-bg-color: #617379;
+  --inputs-fg-color: #dce0e1;
+  --inputs-border-color: #cad0d2;
+  --placeholder-fg-color: #a7b1b5;
 }
 
 html {
@@ -40,8 +49,9 @@ body {
 #username {
   padding: 10px;
   font-size: 16px;
-  background-color: #dfe4ff;
-  border: 1px solid #a9b8fe;
+  background-color: var(--inputs-bg-color);
+  border: 1px solid var(--inputs-border-color);
+  color: var(--inputs-fg-color);
   border-radius: 5px;
   width: 200px;
   margin-right: 10px;
@@ -71,8 +81,9 @@ body {
 
 #chatname-inp {
   font-size: 16px;
-  background-color: #dfe4ff;
-  border: 1px solid #a9b8fe;
+  background-color: var(--inputs-bg-color);
+  border: 1px solid var(--inputs-border-color);
+  color: var(--inputs-fg-color);
   border-radius: 5px;
   flex: 2;
   text-align: center;
@@ -130,15 +141,15 @@ body {
 }
 
 #chat-list::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--scrollbar-track-color);
 }
 
 #chat-list::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--scrollbar-thumb-color);
 }
 
 #chat-list::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--scrollbar-thumb-hover-color);
 }
 
 #chat-list li {
@@ -148,7 +159,7 @@ body {
 }
 
 #chat-list li:hover {
-  color: #4e6eff;
+  color: var(--active-chatlink-color);
   margin-left: 1px;
 }
 
@@ -176,15 +187,15 @@ body {
 }
 
 #participants-list::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--scrollbar-track-color);
 }
 
 #participants-list::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--scrollbar-thumb-color);
 }
 
 #participants-list::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--scrollbar-thumb-hover-color);
 }
 
 #messages-area {
@@ -226,17 +237,17 @@ body {
 
 /* Track */
 #messages::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--scrollbar-track-color);
 }
 
 /* Handle */
 #messages::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--scrollbar-thumb-color);
 }
 
 /* Handle on hover */
 #messages::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--scrollbar-thumb-hover-color);
 }
 
 #messages li {
@@ -257,8 +268,9 @@ body {
 #message {
   padding: 10px;
   font-size: 16px;
-  background-color: #dfe4ff;
-  border: 1px solid #a9b8fe;
+  background-color: var(--inputs-bg-color);
+  border: 1px solid var(--inputs-border-color);
+  color: var(--inputs-fg-color);
   border-radius: 5px;
   width: 80%;
 }
@@ -266,7 +278,7 @@ body {
 #send {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: var(--buttons-bg);;
+  background-color: var(--buttons-bg);
   color: var(--buttons-fg);
   border: none;
   border-radius: 5px;
@@ -317,7 +329,7 @@ h3{
 #timer-bar{
   position: relative;
   height: 5%;
-  background-color: #4e6eff;
+  background-color: var(--popup-timerbar-color);
 }
 
 .timer-full {
@@ -336,4 +348,9 @@ h3{
   text-align: center;
   margin: 0;
   flex: 5;
+}
+
+::placeholder {
+  color: var(--placeholder-fg-color);
+  opacity: 1; /* Firefox */
 }
