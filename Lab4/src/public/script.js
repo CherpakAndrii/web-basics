@@ -144,7 +144,7 @@ socket.on('history', (messages) => {
 		if (msg.type === "conn"){
 			addJoinMessage(msg.user);
 		}
-		else if (msg.type === "discon"){
+		else if (msg.type === "disconn"){
 			addLeaveMessage(msg.user);
 		}
 		else if (msg.type === "mess"){

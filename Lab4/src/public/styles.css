@@ -352,5 +352,5 @@ h3{
 
 ::placeholder {
   color: var(--placeholder-fg-color);
-  opacity: 1; /* Firefox */
+  opacity: 1;
 }
