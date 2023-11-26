@@ -5,15 +5,25 @@
   <title>Sign Up</title>
   <link rel="stylesheet" href="/static/common-styles.css">
   <link rel="stylesheet" href="/static/form-styles.css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div id="form-container">
-  <h1>Log In</h1>
-  <input type="text" id="username" name="username" placeholder="Enter your username">
-  <input type="text" id="passwd" name="passwd" placeholder="Enter your password">
-  <input type="text" id="full_name" name="full_name" placeholder="Enter your full name">
-  <input type="text" id="IdCard" name="IdCard" placeholder="Enter your ID-card">
+  <h1>Sign Up</h1>
+  <form id="form1">
+    <input type="text" id="username" name="username" placeholder="Username">
+    <input type="text" id="passwd" name="passwd" placeholder="Password">
+  </form>
+  <form id="form2" style="display: none">
+    <input type="text" id="full_name" name="full_name" placeholder="Full name: Черпак А. В.">
+    <input type="text" id="id_card" name="id_card" placeholder="ID-card: 987654321">
+    <input type="text" id="faculty" name="faculty" placeholder="Faculty: ФІОТ">
+    <input type="text" id="birthdate" name="birthdate" placeholder="Birthdate: 2003-10-15">
+    <input type="text" id="address" name="address" placeholder="Address: м. Житомир">
+  </form>
+  <button id="submit-button">Next</button>
   <div>or <a href="/login">log in</a></div>
 </div>
 </body>
+<script src="/static/validations.js"></script>
 </html>

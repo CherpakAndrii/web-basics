@@ -1,7 +1,14 @@
 ﻿:root {
   --form-bg-color: #043c75;
   --form-text-color: #f1f1f1;
-  --input-text-color: #333;  
+  --input-text-color: #333;
+  --input-text-incorrect-color: #f33;
+  --submit-button-color: #0968a2;
+  --submit-button-hover-color: #2080b0;
+  --submit-button-incorrect-color: #f33;
+  --submit-button-disabled-color: #555;
+  --inputs-incorrect-bg-color: #ffb0d0;
+  --inputs-bg-color: #f1f1f1;
 }
 
 #form-container{
@@ -18,22 +25,54 @@
   font-size: 1.2em;
 }
 
-#form-container > h1{
+#form-container h1{
   box-sizing: border-box;
   text-align: center;
   margin: 15px;
   font-size: 2em;
 }
 
-#form-container > input{
+#form-container input{
   box-sizing: border-box;
   text-align: left;
   padding: 10px;
   border-radius: 15px;
   color: var(--input-text-color);
   margin: 5px;
+  font-size: 1.1em;
+  background-color: var(--inputs-bg-color);
 }
 
 #form-container a{
   color: var(--form-text-color);
+}
+
+#form-container form{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+#submit-button{
+  width: 100%;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: var(--submit-button-color);
+  color: var(--form-text-color);
+  border-style: solid;
+  border-color: var(--form-text-color);
+  text-align: center;
+  font-size: 1.1em;
+  transition: background-color 0.5s, border-color 0.7s, font-size 1s;
+  cursor: pointer;
+}
+
+#form-container form #submit-button:hover{
+  background-color: var(--submit-button-hover-color);
+  border-style: solid;
+  border-color: var(--form-bg-color);
+  font-size: 1.2em;
 }
