@@ -1,0 +1,133 @@
+﻿:root {
+  --form-bg-color: #043c75;
+  --form-text-color: #f1f1f1;
+  --input-text-color: #333;
+  --input-text-incorrect-color: #f33;
+  --submit-button-color: #0968a2;
+  --submit-button-hover-color: #2080b0;
+  --submit-button-incorrect-color: #f33;
+  --submit-button-disabled-color: #555;
+  --inputs-incorrect-bg-color: #ffb0d0;
+  --inputs-bg-color: #f1f1f1;
+  --usercard-bg: #dfe4ff;
+  --usercard-hover-bg: #e8e8ff;
+  --onhover-scale-rate: 1.1;
+  --transition-time: .4s;
+}
+
+html, body{
+  min-height: 100%;
+  min-width: 390px;
+  display: block;
+  box-sizing: border-box;
+}
+
+#profiles-container{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#profile-container{
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--form-bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1%;
+  /*border-radius: 15px;*/
+  color: var(--form-text-color);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2em;
+}
+
+#profile-container h1{
+  box-sizing: border-box;
+  text-align: center;
+  margin: 15px;
+  font-size: 2em;
+}
+
+#profile-container a{
+  color: var(--form-text-color);
+}
+
+#profile-container form{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+}
+
+#submit-button{
+  width: 100%;
+  padding: 10px;
+  border-radius: 15px;
+  margin: 5px;
+  box-sizing: border-box;
+  background-color: var(--submit-button-color);
+  color: var(--form-text-color);
+  border-style: solid;
+  border-color: var(--form-text-color);
+  text-align: center;
+  font-size: 1.1em;
+  transition: background-color 0.5s, border-color 0.7s, font-size 1s;
+  cursor: pointer;
+}
+
+#profile-container form #submit-button:hover{
+  background-color: var(--submit-button-hover-color);
+  border-style: solid;
+  border-color: var(--form-bg-color);
+  font-size: 1.2em;
+}
+
+.data-element-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.data-element-name{
+  display: flex;
+  flex: 2;
+  min-width: 90px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#profile-container input{
+  box-sizing: border-box;
+  flex: 15;
+  text-align: left;
+  padding: 10px;
+  border-radius: 15px;
+  color: var(--input-text-color);
+  margin: 5px;
+  font-size: 1.1em;
+  background-color: var(--inputs-bg-color);
+}
+
+.userCard {
+  background-color: var(--usercard-bg);
+  padding: 20px 50px;
+  border: 1px solid;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform var(--transition-time), background-color var(--transition-time);
+}
+
+.userCard:hover {
+  transform: scale(var(--onhover-scale-rate));
+  background-color: var(--usercard-hover-bg);
+}

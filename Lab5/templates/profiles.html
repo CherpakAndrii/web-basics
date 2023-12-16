@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Profiles</title>
+    <link rel="stylesheet" href="/static/common-styles.css">
+    <link rel="stylesheet" href="/static/profile-styles.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+  <div id="profile-container">
+    <h1>Your profile:</h1>
+    <div class="data-element-container">
+      <div class="data-element-name">Login:</div>
+      <input type="text" id="username" name="username" placeholder="Username">
+    </div>
+    <div class="data-element-container">
+      <div class="data-element-name">Password:</div>
+      <input type="text" id="passwd" name="passwd" placeholder="Password">
+    </div>
+    <div class="data-element-container">
+      <div class="data-element-name">Full name:</div>
+      <input type="text" id="full_name" name="full_name" placeholder="Черпак А. В.">
+    </div>
+    <div class="data-element-container">
+      <div class="data-element-name">ID-card:</div>
+      <input type="text" id="id_card" name="id_card" placeholder="987654321">
+    </div>
+    <div class="data-element-container">
+      <div class="data-element-name">Faculty:</div>
+      <input type="text" id="faculty" name="faculty" placeholder="ФІОТ">
+    </div>
+    <div class="data-element-container">
+      <div class="data-element-name">Birthdate:</div>
+      <input type="text" id="birthdate" name="birthdate" placeholder="2003-10-15">
+    </div>
+    <div class="data-element-container">
+      <div class="data-element-name">Address:</div>
+      <input type="text" id="address" name="address" placeholder="м. Житомир">
+    </div>
+    <div class="data-element-container">
+      <button id="submit-button">Update</button>
+    </div>
+  </div>
+  <div id="profiles-container">
+  </div>
+  </body>
+  <script src="/static/validations.js"></script>
+  <script src="/static/profiles.js"></script>
+</html>
