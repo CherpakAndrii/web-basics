@@ -2,7 +2,8 @@
 from hashlib import shake_256, shake_128
 from sqlite3 import connect
 from utils.db_utils import (ensure_created_db, get_user_session, try_login, check_username, register_new_user,
-                            get_my_profile, get_all_profiles, check_for_admin)
+                            get_my_profile, get_all_profiles, check_for_admin, update_user, update_passwd, 
+                            delete_users_profile, make_admin)
 
 
 app = Flask(__name__)
@@ -109,6 +110,32 @@ async def get_my_profile_info():
         abort(401)
 
 
+@app.put('/api/my-profile')
+async def update_my_profile_info():
+    if check_access(request):
+        conn = connect(__db_name)
+        user_id = request.cookies.get('user_id', type=int)
+        profile: dict[str, str | int] = get_my_profile(conn, user_id)
+        username_available = profile['login'] == request.form['login'] or check_username(conn, request.form['login'])
+        if username_available:
+            hashed_passw = shake_256(request.form['passwd'].encode()).hexdigest(10)
+            user_id = update_user(conn, user_id, request.form['login'], request.form['full_name'],
+                                        int(request.form['id_card']), request.form['faculty'], request.form['birthdate'],
+                                        request.form['address'])
+
+            pwd = request.form['passwd'].encode()
+            if pwd is not None and len(pwd) > 0:
+                hashed_passw = shake_256(pwd).hexdigest(10)
+                update_passwd(conn, user_id, hashed_passw)
+            conn.close()
+            return authenticate(user_id, hashed_passw)
+        else:
+            conn.close()
+            abort(400)
+    else:
+        abort(401)
+
+
 @app.get('/api/profiles')
 async def get_profiles():
     if check_access(request):
@@ -118,6 +145,38 @@ async def get_profiles():
             profiles: list[dict[str, str | int]] = get_all_profiles(conn)
             conn.close()
             return jsonify(profiles)
+        else:
+            conn.close()
+            abort(403)
+    else:
+        abort(401)
+
+
+@app.delete('/api/profiles/<int:deleted_user_id>')
+async def delete_profile(deleted_user_id: int):
+    if check_access(request):
+        user_id = request.cookies.get('user_id', type=int)
+        conn = connect(__db_name)
+        if check_for_admin(conn.cursor(), user_id):
+            delete_users_profile(conn, deleted_user_id)
+            conn.close()
+            return jsonify({'status': 'Success'})
+        else:
+            conn.close()
+            abort(403)
+    else:
+        abort(401)
+
+
+@app.put('/api/profiles/<int:promoted_user_id>')
+async def make_user_admin(promoted_user_id: int):
+    if check_access(request):
+        user_id = request.cookies.get('user_id', type=int)
+        conn = connect(__db_name)
+        if check_for_admin(conn.cursor(), user_id):
+            make_admin(conn, promoted_user_id)
+            conn.close()
+            return jsonify({'status': 'Success'})
         else:
             conn.close()
             abort(403)

@@ -34,8 +34,8 @@ function GoNext(){
 		}
 		else{
 			fetch(`/api/sign-up/${username.value}`).then((resp) => resp.json()).then(
-				available => {
-					if (available){
+				data => {
+					if (data.available){
 						form1.style.display = 'none';
 						form2.style.display = 'flex';
 						submit.innerText = 'Sign Up';
@@ -55,7 +55,6 @@ function GoNext(){
 }
 
 function OnChanged(i){
-	
 	fildIsValid[i] = validationFuncs[i](fields[i]);
 	if (fildIsValid.every((el) => el)) {
 		submit.disabled = false;
@@ -65,97 +64,6 @@ function OnChanged(i){
 		submit.disabled = true;
 		submit.style.background = submit_dis_bg;
 	}
-}
-
-function SendFormData(data)
-{
-	if (_validateName(data.fullname) &&
-		_validateIdCard(data.IdCard) &&
-		_validateFaculty(data.faculty) &&
-		_validateBirthDate(data.birthdate) &&
-		_validateAddress(data.address))
-	{
-		PrintData(data);
-		return true;
-	}
-	
-	return false;
-}
-
-function _validateUsername(usrname)
-{
-	return (usrname.value != null && (/^\w{3,20}$/.test(username.value)));
-}
-
-function _validatePasswd(passw)
-{
-	return passw.value != null && passw.value.length > 5 && passw.value.match(/[A-Z]/)?.length && passw.value.match(/[a-z]/)?.length && passw.value.match(/\d/)?.length;
-}
-
-function _validateName(fullname)
-{
-	if (fullname.value != null && (/^[A-ZА-ЯІҐЄЇ][a-zа-яіґєї]+ [A-ZА-ЯІҐЄЇ]\.[A-ZА-ЯІҐЄЇ]\.$/.test(fullname.value)))
-	{
-		fullname.style.background = inp_bg_color;
-		return true;
-	}
-
-	fullname.style.background = incorrect_inp_bg_color;
-	//console.log("Некоректний формат імені!")
-	return false;
-}
-
-function _validateIdCard(IdCard)
-{
-	if (IdCard.value != null && (/^\d{9}$/.test(IdCard.value)))
-	{
-		IdCard.style.background = inp_bg_color;
-		return true;
-	}
-
-	IdCard.style.background = incorrect_inp_bg_color;
-	//console.log("Некоректний формат номеру ID-карти!")
-	return false;
-}
-
-function _validateFaculty(faculty)
-{
-	if (faculty.value != null && (/^[A-ZА-ЯІҐЄЇ]{3,5}$/.test(faculty.value)))
-	{
-		faculty.style.background = inp_bg_color;
-		return true;
-	}
-
-	faculty.style.background = incorrect_inp_bg_color;
-	//console.log("Некоректний формат назви факультету!")
-	return false;
-}
-
-function _validateBirthDate(birthdate)
-{
-	if (birthdate.value != null && Date.parse(birthdate.value) != null &&
-		birthdate.value.length === 10 && Date.parse(birthdate.value) < Date.now())
-	{
-		birthdate.style.background = inp_bg_color;
-		return true;
-	}
-	
-	birthdate.style.background = incorrect_inp_bg_color;
-	//console.log("Некоректний формат дати народження!")
-	return false;
-}
-
-function _validateAddress(address)
-{
-	if (address.value != null && (/^м. [А-ЯІҐЄЇ][а-яіґєї]+([- ][А-ЯІҐЄЇ][а-яіґєї]+)?$/.test(address.value)))
-	{
-		address.style.background = inp_bg_color;
-		return true;
-	}
-
-	address.style.background = incorrect_inp_bg_color;
-	//console.log("Некоректний формат адреси!")
-	return false;
 }
 
 function TrySignUp(){

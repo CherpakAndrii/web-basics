@@ -42,6 +42,24 @@ def register_new_user(connection: Connection, login: str, hashed_passwd: str, fu
     return crs.fetchone()[0]
 
 
+def update_user(connection: Connection, user_id: int, login: str, full_name: str, id_card: int, faculty: str, birthdate: str, address: str) -> int:
+    crs: Cursor = connection.cursor()
+    crs.execute(f'UPDATE Users SET login = ?, full_name = ?, id_card = ?, faculty = ?, birthdate = ?, address = ? WHERE user_id = ?',
+                (login, full_name, id_card, faculty, birthdate, address, user_id))
+    connection.commit()
+
+    crs.execute(f'SELECT user_id FROM Users WHERE login = ?',
+                (login, ))
+    return crs.fetchone()[0]
+
+
+def update_passwd(connection: Connection, user_id: int, hashed_passwd: str) -> None:
+    crs: Cursor = connection.cursor()
+    crs.execute(f'UPDATE Users SET hashed_password = ? WHERE user_id = ?',
+                (hashed_passwd, user_id))
+    connection.commit()
+
+
 def try_login(connection: Connection, login: str, hashed_passwd: str) -> int | None:
     crs: Cursor = connection.cursor()
 
@@ -97,8 +115,15 @@ def get_my_profile(connection: Connection, user_id: int) -> dict[str, str | int]
         (user_id,))
 
     user_id, login, hashed_password, is_admin, full_name, id_card, faculty, birthdate, address = crs.fetchone()
-    return {'user_id': user_id, 'login': login, 'hashed_passwd': hashed_password, 'is_admin': is_admin == 1,
+    return {'user_id': user_id, 'login': login, 'is_admin': is_admin == 1,
             'full_name': full_name, 'id_card': id_card, 'faculty': faculty, 'birthdate': birthdate, 'address': address}
+
+
+def delete_users_profile(connection: Connection, user_id: int):
+    crs = connection.cursor()
+    crs.execute(
+        f'''DELETE FROM Users WHERE user_id=?''', (user_id,))
+    connection.commit()
 
 
 if __name__ == '__main__':
